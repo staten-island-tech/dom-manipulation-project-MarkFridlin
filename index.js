@@ -1,19 +1,19 @@
 const DOMSelctors = {
-  header: document.querySelector("h1"),
-  description: document.querySelector(".card-desc"),
+  header: document.querySelector(".parent"),
+  description: document.querySelector("button"),
+  title: document.querySelector("#title"),
+  desc: document.querySelector("#desc"),
 };
-const stuudent = {
-  name: "Mark",
-  age: 15,
-};
-console.log(DOMSelctors.descriptions);
-function changeColor() {
-  let form = document.querySelector("form");
-  form.addEventListene("submit", function (event) {
-    event.preventDefault();
-    //Listens for a click
-    console.log(event.target);
-    button.style.backgroundColor = "red";
-  });
+function clearInput() {
+  DOMSelctors.title.value = "";
+  DOMSelctors.desc.value = "";
 }
-changeColor();
+function removePrompt(num) {
+  DOMSelctors.parentdiv.removeChild(`p${num}`);
+}
+function addElement(num) {
+  DOMSelctors.parentdiv.insertAdjacentHTML(
+    "befreend",
+    `<div class="card" id="p${num}"><h4>${DOMSelctors.title.value}</h4><img src="${DOMSelctors.desc.value}"<button id="b${num}>Delete</div>`
+  );
+}
