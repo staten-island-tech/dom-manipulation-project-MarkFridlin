@@ -1,51 +1,55 @@
-const DOMSelctors = {
-  parentdiv: document.querySelector(".parent"),
-  submitButton: document.querySelector("button"),
-  title: document.querySelector("#title"),
-  desc: document.querySelector("#desc"),
+const DOMselectors = {
+  header: document.querySelector("h2"),
+  picture: document.querySelectorAll("picture"),
+  description: document.querySelector(".card-desc"),
+  form: document.querySelector("form"),
+  cardContainer: document.querySelector(".card-container"),
 };
-function clearInput() {
-  DOMSelctors.title.value = "";
-  DOMSelctors.desc.value = "";
+
+let formObject;
+
+function create() {
+  const formdata = [
+    document.querySelector("#inputv"),
+    document.querySelector("#inputx"),
+    document.querySelector("#inputz"),
+  ];
+
+  const name = formdata[0].value;
+  const picture = formdata[1].value;
+  const desc = formdata[2].value;
+
+  formObject = { name, picture, desc };
 }
-function removePrompt(num) {
-  DOMSelctors.parentdiv.removeChild(`p${num}`);
-}
-function addElement(num) {
-  DOMSelctors.parentdiv.insertAdjacentHTML(
-    "beforeend",
-    `<div class="card" id="p${num}"><h4>${DOMSelctors.title.value}</h4><img src="${DOMSelctors.desc.value}"><button id="b${num}>Delete</button></div>`
-  );
+
+function addCard() {
+  const cardHTML = `
+  <div class="card card-ani">
+    <h2>${formObject.name}</h2>
+    <img class="images" src="${formObject.picture}" alt="Image of ${formObject.name}" />
+    <h3>${formObject.desc}</h3>
+    <button class="remove-btn button-ani">Remove</button>
+  </div>
+  `;
+
+  DOMselectors.cardContainer.insertAdjacentHTML("beforeend", cardHTML);
   document
-    .querySelector(`#b${num}`)
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      document.querySelector(`#p${num}`).remove();
-    });
-  function run() {
-    let n = 0;
-    DOMSelctors.submitButton.addEventListener("click", function (event) {
-      if (!(DOMSelctors.title.value === "" || DOMSelctors.desc.value === "")) {
-        event.preventDefault();
-        addElement(n);
-        clearInput();
-        n += 1;
-      }
-    });
-  }
+    .querySelectorAll("#inputv, #inputx, #inputz")
+    .forEach((input) => (input.value = ""));
 }
-[title, desc].forEach((input) => {
-  input.addEventListener("keypress", function (event) {
-    if (
-      !(DOMSelctors.title.value === "" || DOMSelctors.desc.value === "") &
-      (event.key === "enter")
-    ) {
-      event.preventDefault();
-      addElement(n);
-      clearInput();
-      n += 1;
+
+function removeCard() {
+  DOMselectors.cardContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-btn")) {
+      const card = event.target.closest(".card");
+      card.remove();
     }
   });
-});
+}
 
-run();
+DOMselectors.form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  create();
+  addCard();
+  removeCard();
+});

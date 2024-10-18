@@ -1,25 +1,44 @@
-<body>
-  <script src="index.js"></script>
-</body>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=devicewidth, unitial-scale=1.0" />
-    <link rel="preconnect" href="style.css" />
-    <title>DOM(inating this project)</title>
+    <link rel="stylesheet" href="style.css" />
+    <title>mywebsite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1 class="page-head text-ani">Card maker</h1>
+    <h1 class="page-head text-ani">Card Creator</h1>
     <form action="/action_page.php" method="get">
-      <label for="inputv">Title</label>
-      <input type="text" id="inputv" name="submitname" autocomplete="name"/>
-      <h3>Thing 2</h3>
-      <input type="text" id="desc"/>
-      <button type="button">submit</button>
+      <label for="inputv">Name:</label>
+      <input
+        type="text"
+        id="inputv"
+        name="submitted-name"
+        autocomplete="name"
+      /><br /><br />
+
+      <label for="inputx">Picture-link:</label>
+      <input
+        type="text"
+        id="inputx"
+        name="submitted-picture"
+        autocomplete="picture"
+      /><br /><br />
+
+      <label for="inputz">Description:</label>
+      <input
+        type="text"
+        id="inputz"
+        name="submitted-desc"
+        autocomplete="desc"
+      /><br /><br />
+
+      <input type="submit" value="Enter" class="button-ani" />
     </form>
-    <img src="" alt=""/>
-    <div class="parent"></div>
-   <script src="index.js"></script>
-    </div>
+    <div class="card-container"></div>
+    <script src="index.js"></script>
   </body>
 </html>
